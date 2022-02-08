@@ -1,0 +1,100 @@
+imax 2 numbbr of bins
+jmax * numbbr of processes
+kmax * numbbr of nuisance parameters
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+shapes *         control templates/tmp2017bb_multiBins.root el_$PROCESS
+shapes el_DY_S0  control templates/tmp2017bb_multiBins.root $PROCESS $PROCESS$SYSTEMATIC
+shapes el_DY_S1  control templates/tmp2017bb_multiBins.root $PROCESS $PROCESS$SYSTEMATIC
+shapes el_DY_S2  control templates/tmp2017bb_multiBins.root $PROCESS $PROCESS$SYSTEMATIC
+shapes el_DY_S3  control templates/tmp2017bb_multiBins.root $PROCESS $PROCESS$SYSTEMATIC
+shapes el_DY_S4  control templates/tmp2017bb_multiBins.root $PROCESS $PROCESS$SYSTEMATIC
+shapes el_DY_S5  control templates/tmp2017bb_multiBins.root $PROCESS $PROCESS$SYSTEMATIC
+shapes el_DY_S6  control templates/tmp2017bb_multiBins.root $PROCESS $PROCESS$SYSTEMATIC
+shapes el_DY_S7  control templates/tmp2017bb_multiBins.root $PROCESS $PROCESS$SYSTEMATIC
+shapes el_DY_S8  control templates/tmp2017bb_multiBins.root $PROCESS $PROCESS$SYSTEMATIC
+shapes el_DY_S9  control templates/tmp2017bb_multiBins.root $PROCESS $PROCESS$SYSTEMATIC
+shapes el_Other  control templates/tmp2017bb_multiBins.root $PROCESS $PROCESS$SYSTEMATIC
+shapes *         signal  templates/tmp2017bb_multiBins.root mu_$PROCESS
+shapes mu_DY_S0  signal  templates/tmp2017bb_multiBins.root $PROCESS $PROCESS$SYSTEMATIC
+shapes mu_DY_S1  signal  templates/tmp2017bb_multiBins.root $PROCESS $PROCESS$SYSTEMATIC
+shapes mu_DY_S2  signal  templates/tmp2017bb_multiBins.root $PROCESS $PROCESS$SYSTEMATIC
+shapes mu_DY_S3  signal  templates/tmp2017bb_multiBins.root $PROCESS $PROCESS$SYSTEMATIC
+shapes mu_DY_S4  signal  templates/tmp2017bb_multiBins.root $PROCESS $PROCESS$SYSTEMATIC
+shapes mu_DY_S5  signal  templates/tmp2017bb_multiBins.root $PROCESS $PROCESS$SYSTEMATIC
+shapes mu_DY_S6  signal  templates/tmp2017bb_multiBins.root $PROCESS $PROCESS$SYSTEMATIC
+shapes mu_DY_S7  signal  templates/tmp2017bb_multiBins.root $PROCESS $PROCESS$SYSTEMATIC
+shapes mu_DY_S8  signal  templates/tmp2017bb_multiBins.root $PROCESS $PROCESS$SYSTEMATIC
+shapes mu_DY_S9  signal  templates/tmp2017bb_multiBins.root $PROCESS $PROCESS$SYSTEMATIC
+shapes mu_Other  signal  templates/tmp2017bb_multiBins.root $PROCESS $PROCESS$SYSTEMATIC
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+bin              signal         control
+observation      31171.0     32150.0
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+bin                        signal      signal      signal      signal      signal      signal      signal      signal      signal      signal      signal     control     control     control     control     control     control     control     control     control     control      control
+process                    mu_DY_S0    mu_DY_S1    mu_DY_S2    mu_DY_S3    mu_DY_S4    mu_DY_S5    mu_DY_S6    mu_DY_S7    mu_DY_S8    mu_DY_S9    mu_Other   el_DY_S0    el_DY_S1    el_DY_S2    el_DY_S3    el_DY_S4    el_DY_S5    el_DY_S6    el_DY_S7    el_DY_S8    el_DY_S9     el_Other
+process                    1           0           -1          -2          -3          -4          -5          -6          -7          -8          3          1           2           3           4           5           6           7           8           9           10           12
+rate                       222.884915312  1.0         1.0         1.0         1.0         1.0         1.0         1.0         1.0         1.0         9479.18577376   284.380076531  1.0         1.0         1.0         1.0         1.0         1.0         1.0         1.0         1.0          10653.1180395
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+_2017bb_elMassScale   shape       -           -           -           -           -           -           -           -           -           -           -          1.0         1.0         1.0         1.0         1.0         1.0         1.0         1.0         1.0         1.0          1.0
+_muMassScale   shape       1.0         1.0         1.0         1.0         1.0         1.0         1.0         1.0         1.0         1.0         1.0        -           -           -           -           -           -           -           -           -           -            -
+_Smear         shape       1.0         1.0         1.0         1.0         1.0         1.0         1.0         1.0         1.0         1.0         1.0        -           -           -           -           -           -           -           -           -           -            -
+_Prefire       shape       -           -           -           -           -           -           -           -           -           -           -          1.0         1.0         1.0         1.0         1.0         1.0         1.0         1.0         1.0         1.0          1.0
+_PUScale       shape       -           -           -           -           -           -           -           -           -           -           -          1.0         1.0         1.0         1.0         1.0         1.0         1.0         1.0         1.0         1.0          1.0
+_MuonID        shape       1.0         1.0         1.0         1.0         1.0         1.0         1.0         1.0         1.0         1.0         1.0        -           -           -           -           -           -           -           -           -           -            -
+_trig2017bb          lnN         1.01       -           -           -           -           -           -           -           -           -           1.01      -           -           -           -           -           -           -           -           -           -            -
+_eff           lnN         -           1.06        1.06        1.06        1.06        1.06        1.06        1.06        1.06        1.06        1.06       1.06        1.06        1.06        1.06        1.06        1.06        1.06        1.06        1.06        1.06         1.06
+R1_2017bb             param      0.955401990071             0.011588953345690382 
+R2_2017bb             param      0.929360223189             0.023670926995064442 
+R3_2017bb             param      0.960184155358             0.012126410932590292 
+R4_2017bb             param      0.951896964914             0.015341716049754732 
+R5_2017bb             param      0.963905846462             0.023424335664993672 
+R6_2017bb             param      0.989934553237             0.011313161729839916 
+R7_2017bb             param      0.99605069067             0.01811226199272211 
+R8_2017bb             param      1.03454609119             0.012640022124920255 
+R9_2017bb             param      1.05587958701             0.014901716776417256 
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+R1_2017bb             rateParam  signal                   mu_DY_S1     0.955401990071   [0,2] 
+R2_2017bb             rateParam  signal                   mu_DY_S2     0.929360223189   [0,2]
+R3_2017bb             rateParam  signal                   mu_DY_S3     0.960184155358   [0,2]
+R4_2017bb             rateParam  signal                   mu_DY_S4     0.951896964914   [0,2]
+R5_2017bb             rateParam  signal                   mu_DY_S5     0.963905846462   [0,2]
+R6_2017bb             rateParam  signal                   mu_DY_S6     0.989934553237   [0,2]
+R7_2017bb             rateParam  signal                   mu_DY_S7     0.99605069067   [0,2]
+R8_2017bb             rateParam  signal                   mu_DY_S8     1.03454609119   [0,2]
+R9_2017bb             rateParam  signal                   mu_DY_S9     1.05587958701   [0,2]
+Rmu1_2017bb           rateParam  signal                   mu_DY_S1     (@0) Rel1_2017bb       
+Rel1_2017bb           rateParam  control                  el_DY_S1     15771.6910598      [0,999999]
+Rmu2_2017bb           rateParam  signal                   mu_DY_S2     (@0) Rel2_2017bb       
+Rel2_2017bb           rateParam  control                  el_DY_S2     3848.38660285      [0,999999]
+Rmu3_2017bb           rateParam  signal                   mu_DY_S3     (@0) Rel3_2017bb       
+Rel3_2017bb           rateParam  control                  el_DY_S3     1346.61806601      [0,999999]
+Rmu4_2017bb           rateParam  signal                   mu_DY_S4     (@0) Rel4_2017bb 
+Rel4_2017bb           rateParam  control                  el_DY_S4     829.616240489      [0,999999]
+Rmu5_2017bb           rateParam  signal                   mu_DY_S5     (@0) Rel5_2017bb 
+Rel5_2017bb           rateParam  control                  el_DY_S5     249.196609891      [0,999999]
+Rmu6_2017bb           rateParam  signal                   mu_DY_S6     (@0) Rel6_2017bb 
+Rel6_2017bb           rateParam  control                  el_DY_S6     107.750305392      [0,999999]
+Rmu7_2017bb           rateParam  signal                   mu_DY_S7     (@0) Rel7_2017bb 
+Rel7_2017bb           rateParam  control                  el_DY_S7     26.0112941954      [0,999999]
+Rmu8_2017bb           rateParam  signal                   mu_DY_S8     (@0) Rel8_2017bb 
+Rel8_2017bb           rateParam  control                  el_DY_S8     7.65984988535      [0,999999]
+Rmu9_2017bb           rateParam  signal                   mu_DY_S9     (@0) Rel9_2017bb 
+Rel9_2017bb           rateParam  control                  el_DY_S9     3.43850765087      [0,999999]
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+signal              autoMCStats 0 0 1
+control             autoMCStats 0 0 1
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+massBin9 group = Rel1_2017bb Rel2_2017bb Rel3_2017bb Rel4_2017bb Rel5_2017bb Rel6_2017bb Rel7_2017bb Rel8_2017bb  
+massBin8 group = Rel1_2017bb Rel2_2017bb Rel3_2017bb Rel4_2017bb Rel5_2017bb Rel6_2017bb Rel7_2017bb  
+
+
+
+
+
+
+
+
+
+
+

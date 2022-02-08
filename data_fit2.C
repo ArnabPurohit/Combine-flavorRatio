@@ -1,0 +1,133 @@
+#include "RooRealVar.h"
+#include "RooDataSet.h"
+#include "RooGaussian.h"
+#include "RooChebychev.h"
+#include "RooAddPdf.h"
+#include "TCanvas.h"
+#include "TAxis.h"
+#include "RooPlot.h"
+using namespace RooFit;
+void data_fit2(){
+  
+  TFile *bin_file = new TFile("/afs/cern.ch/work/a/arpurohi/private/Minxi_Unfolding/Combine-flavorRatio/templates/tmp2016bb_multiBins.root","READ");
+  TH1F *bin_hist = (TH1F*)bin_file->Get("mu_DY_S0");
+  bin_hist->Draw();
+  for(int i=0;i<bin_hist->GetNbinsX();i++){
+    std::cout<<i<<std::endl;
+  }
+
+  bin_hist->SetDirectory(0);
+  bin_file->Close();
+
+  TFile *inputfile = new TFile("workspace_bb_mu.root","READ");
+
+  RooWorkspace *ws = (RooWorkspace*)inputfile->Get("bb_ws");
+
+  ws->Print();
+  RooRealVar *mass = ws->var("mass");
+  mass->setRange("full", 400, 3500);
+  RooPlot* xframe = mass->frame(RooFit::Title("Signal"));
+  RooArgList *sig_pdf_list = new RooArgList();
+  RooArgList *nsig_list = new RooArgList();
+
+
+  RooRealVar *nsig0 = new RooRealVar("nsig0", "Number of component 1 in signal", 0.1, 0.0001, 0.5);
+  RooRealVar *nsig1 = new RooRealVar("nsig1", "Number of component 2 in signal", 0.1, 0.000, 0.5);
+  RooRealVar *nsig2 = new RooRealVar("nsig2", "Number of component 3 in signal", 0.1, 0.000, 0.5);
+  RooRealVar *nsig3 = new RooRealVar("nsig3", "Number of component 4 in signal", 0.1, 0.000, 0.5);
+  RooRealVar *nsig4 = new RooRealVar("nsig4", "Number of component 5 in signal", 0.1, 0.000, 0.5);
+  RooRealVar *nsig5 = new RooRealVar("nsig5", "Number of component 6 in signal", 0.1, 0.000, 0.5);
+  RooRealVar *nsig6 = new RooRealVar("nsig6", "Number of component 7 in signal", 0.1, 0.000, 0.5);
+  RooRealVar *nsig7 = new RooRealVar("nsig7", "Number of component 8 in signal", 0.1, 0.000, 0.5);
+  RooRealVar *nsig8 = new RooRealVar("nsig8", "Number of component 9 in signal", 0.1, 0.000, 0.5);
+  /*
+  nsig_list->add(nsig0);
+  nsig_list->add(nsig1);
+  nsig_list->add(nsig2);
+  nsig_list->add(nsig3);
+  nsig_list->add(nsig4);
+  nsig_list->add(nsig5);
+  nsig_list->add(nsig6);
+  nsig_list->add(nsig7);
+  nsig_list->add(nsig8);
+
+
+  sig_pdf_list->add(ws->pdf("signal_pdf_0"));
+  sig_pdf_list->add(ws->pdf("signal_pdf_1"));
+  sig_pdf_list->add(ws->pdf("signal_pdf_2"));
+  sig_pdf_list->add(ws->pdf("signal_pdf_3"));
+  sig_pdf_list->add(ws->pdf("signal_pdf_4"));
+  sig_pdf_list->add(ws->pdf("signal_pdf_5"));
+  sig_pdf_list->add(ws->pdf("signal_pdf_6"));
+  sig_pdf_list->add(ws->pdf("signal_pdf_7"));
+  sig_pdf_list->add(ws->pdf("signal_pdf_8"));
+  sig_pdf_list->add(ws->pdf("signal_pdf_9"));
+  */
+  RooHistPdf * sig_model_0 = (RooHistPdf *)ws->pdf("signal_pdf_0");
+  RooHistPdf * sig_model_1 = (RooHistPdf *)ws->pdf("signal_pdf_1");
+  RooHistPdf * sig_model_2 = (RooHistPdf *)ws->pdf("signal_pdf_2");
+  RooHistPdf * sig_model_3 = (RooHistPdf *)ws->pdf("signal_pdf_3");
+  RooHistPdf * sig_model_4 = (RooHistPdf *)ws->pdf("signal_pdf_4");
+  RooHistPdf * sig_model_5 = (RooHistPdf *)ws->pdf("signal_pdf_5");
+  RooHistPdf * sig_model_6 = (RooHistPdf *)ws->pdf("signal_pdf_6");
+  RooHistPdf * sig_model_7 = (RooHistPdf *)ws->pdf("signal_pdf_7");
+  RooHistPdf * sig_model_8 = (RooHistPdf *)ws->pdf("signal_pdf_8");
+  RooHistPdf * sig_model_9 = (RooHistPdf *)ws->pdf("signal_pdf_9");
+  RooGenericPdf * bkg_model = (RooGenericPdf *)ws->pdf("bkgmodel_bb");
+
+  std::cout<<ws->pdf("signal_pdf_0")->GetName()<<std::endl;
+  //RooAddPdf *sig = new RooAddPdf("sig", "Signal", sig_pdf_list, nsig_list, rt.kTRUE)
+  //RooAddPdf model("model", "g1+g2+a", RooArgList(*sig_model_0, *sig_model_1, *sig_model_2, *sig_model_3, *sig_model_4, *sig_model_5, *sig_model_6, *sig_model_7, *sig_model_8, *sig_model_9), RooArgList(*nsig0,* nsig1, nsig2, nsig3, nsig4, nsig5, nsig6, nsig7, nsig8),1);
+  //RooRealVar sig1frac("sig1frac","fraction of component 1 in signal",0.8,0.,1.) ;
+  //RooAddPdf *model = new RooAddPdf("model", "g1+g2+a", RooArgList(*sig_model_0, *sig_model_1, *sig_model_2, *sig_model_3, *sig_model_4, *sig_model_5, *sig_model_6, *sig_model_7, *sig_model_8, *sig_model_9), RooArgList(*nsig0, *nsig1, *nsig2, *nsig3, *nsig4, *nsig5, *nsig6, *nsig7, *nsig8));
+  RooDataHist *dataset = (RooDataHist*) ws->data("datahist");
+  dataset->plotOn(xframe);
+  RooAddPdf *model = new RooAddPdf("model", "sig", RooArgList(*sig_model_1, *sig_model_2, *sig_model_3, *sig_model_4, *sig_model_5, *sig_model_6, *sig_model_7, *sig_model_8, *sig_model_9), RooArgList(*nsig1, *nsig2, *nsig3, *nsig4, *nsig5, *nsig6, *nsig7, *nsig8));
+  RooAddPdf *model_full = new RooAddPdf("model_full", "sig+bkg", RooArgList(*model, *bkg_model), RooArgList(*nsig0));
+  model_full->fitTo(*dataset);
+  
+  //sig_model_3->plotOn(xframe,  Range("full"), RooFit::NormRange("full"));
+  //RooAbsReal* i = sig_model_3->createIntegral(*mass);
+  //model_full->plotOn(xframe,  Range("full"), RooFit::NormRange("full"));
+  model_full->plotOn(xframe, Components(RooArgSet(*model, *bkg_model)), LineColor(kRed), LineStyle(kDotted));
+  RooAbsReal* i = model->createIntegral(*mass);
+  std::cout<<i->getVal()<<std::endl;
+  //model->plotOn(xframe);
+  //model->plotOn(xframe,Components(RooArgSet(*sig_model_2, *sig_model_3, *sig_model_4, *sig_model_5, *sig_model_6, *sig_model_7, *sig_model_8, *sig_model_9)), LineColor(kRed), LineStyle(kDotted)) ;
+  //model->plotOn(xframe,Components(RooArgSet(*sig_model_0)), LineColor(kRed), LineStyle(kDotted)) ;
+  //model->plotOn(xframe,Components(RooArgSet(*sig_model_1)), LineColor(kYellow), LineStyle(kDotted)) ;
+  //model->plotOn(xframe,Components(RooArgSet(*sig_model_8)), LineColor(kBlack), LineStyle(kDotted)) ;
+  //model->plotOn(xframe);
+  
+
+  xframe->Draw();
+  
+}
+/*
+
+sig_pdf_list = rt.RooArgList()
+#sig_pdf_list = []
+nsig_list = rt.RooArgList()
+#nsig_list = []
+#nsig_list = []
+#for i in range(len(list_mass)-1):
+for i in range(10):
+    #nsig = rt.RooRealVar("nsig"+str(list_mass[i])+"to"+str(list_mass[i+1]), "Number of component 1 in signal", 100, 0, 5000000)    
+    #nsig = rt.RooRealVar("nsig"+str(list_mass[i])+"to"+str(list_mass[i+1]), "Number of component 1 in signal", 0.1, 0.0001, 0.5)   
+    if i <9: 
+        nsig = rt.RooRealVar("nsig"+str(i), "Number of component 1 in signal", 0.1, 0.0001, 0.5)    
+        print(type(nsig))
+        nsig_list.add(nsig)
+    #print(nsig_list.at(i).GetName())
+    sig_pdf_list.add(ws.pdf("signal_pdf_"+str(i)))
+    print(ws.pdf("signal_pdf_"+str(i)))
+
+#pdf = ws.pdf("signal_pdf_0")
+
+#print(pdf.GetName())
+#pdf.plotOn(xframe)
+
+
+
+	  }
+*/

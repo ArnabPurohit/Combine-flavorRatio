@@ -1,0 +1,100 @@
+imax 2 numbbr of bins
+jmax * numbbr of processes
+kmax * numbbr of nuisance parameters
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+shapes *         control templates/tmp2018be_multiBins.root el_$PROCESS
+shapes el_DY_S0  control templates/tmp2018be_multiBins.root $PROCESS $PROCESS$SYSTEMATIC
+shapes el_DY_S1  control templates/tmp2018be_multiBins.root $PROCESS $PROCESS$SYSTEMATIC
+shapes el_DY_S2  control templates/tmp2018be_multiBins.root $PROCESS $PROCESS$SYSTEMATIC
+shapes el_DY_S3  control templates/tmp2018be_multiBins.root $PROCESS $PROCESS$SYSTEMATIC
+shapes el_DY_S4  control templates/tmp2018be_multiBins.root $PROCESS $PROCESS$SYSTEMATIC
+shapes el_DY_S5  control templates/tmp2018be_multiBins.root $PROCESS $PROCESS$SYSTEMATIC
+shapes el_DY_S6  control templates/tmp2018be_multiBins.root $PROCESS $PROCESS$SYSTEMATIC
+shapes el_DY_S7  control templates/tmp2018be_multiBins.root $PROCESS $PROCESS$SYSTEMATIC
+shapes el_DY_S8  control templates/tmp2018be_multiBins.root $PROCESS $PROCESS$SYSTEMATIC
+shapes el_DY_S9  control templates/tmp2018be_multiBins.root $PROCESS $PROCESS$SYSTEMATIC
+shapes el_Other  control templates/tmp2018be_multiBins.root $PROCESS $PROCESS$SYSTEMATIC
+shapes *         signal  templates/tmp2018be_multiBins.root mu_$PROCESS
+shapes mu_DY_S0  signal  templates/tmp2018be_multiBins.root $PROCESS $PROCESS$SYSTEMATIC
+shapes mu_DY_S1  signal  templates/tmp2018be_multiBins.root $PROCESS $PROCESS$SYSTEMATIC
+shapes mu_DY_S2  signal  templates/tmp2018be_multiBins.root $PROCESS $PROCESS$SYSTEMATIC
+shapes mu_DY_S3  signal  templates/tmp2018be_multiBins.root $PROCESS $PROCESS$SYSTEMATIC
+shapes mu_DY_S4  signal  templates/tmp2018be_multiBins.root $PROCESS $PROCESS$SYSTEMATIC
+shapes mu_DY_S5  signal  templates/tmp2018be_multiBins.root $PROCESS $PROCESS$SYSTEMATIC
+shapes mu_DY_S6  signal  templates/tmp2018be_multiBins.root $PROCESS $PROCESS$SYSTEMATIC
+shapes mu_DY_S7  signal  templates/tmp2018be_multiBins.root $PROCESS $PROCESS$SYSTEMATIC
+shapes mu_DY_S8  signal  templates/tmp2018be_multiBins.root $PROCESS $PROCESS$SYSTEMATIC
+shapes mu_DY_S9  signal  templates/tmp2018be_multiBins.root $PROCESS $PROCESS$SYSTEMATIC
+shapes mu_Other  signal  templates/tmp2018be_multiBins.root $PROCESS $PROCESS$SYSTEMATIC
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+bin              signal         control
+observation      79475.0     44374.0
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+bin                        signal      signal      signal      signal      signal      signal      signal      signal      signal      signal      signal     control     control     control     control     control     control     control     control     control     control      control
+process                    mu_DY_S0    mu_DY_S1    mu_DY_S2    mu_DY_S3    mu_DY_S4    mu_DY_S5    mu_DY_S6    mu_DY_S7    mu_DY_S8    mu_DY_S9    mu_Other   el_DY_S0    el_DY_S1    el_DY_S2    el_DY_S3    el_DY_S4    el_DY_S5    el_DY_S6    el_DY_S7    el_DY_S8    el_DY_S9     el_Other
+process                    1           0           -1          -2          -3          -4          -5          -6          -7          -8          3          1           2           3           4           5           6           7           8           9           10           12
+rate                       1399.82347831  1.0         1.0         1.0         1.0         1.0         1.0         1.0         1.0         1.0         22960.9970186   653.529190462  1.0         1.0         1.0         1.0         1.0         1.0         1.0         1.0         1.0          17687.5448569
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+_2018be_elMassScale   shape       -           -           -           -           -           -           -           -           -           -           -          1.0         1.0         1.0         1.0         1.0         1.0         1.0         1.0         1.0         1.0          1.0
+_muMassScale   shape       1.0         1.0         1.0         1.0         1.0         1.0         1.0         1.0         1.0         1.0         1.0        -           -           -           -           -           -           -           -           -           -            -
+_2018be_Smear         shape       1.0         1.0         1.0         1.0         1.0         1.0         1.0         1.0         1.0         1.0         1.0        -           -           -           -           -           -           -           -           -           -            -
+_Prefire       shape       -           -           -           -           -           -           -           -           -           -           -          1.0         1.0         1.0         1.0         1.0         1.0         1.0         1.0         1.0         1.0          1.0
+_PUScale       shape       -           -           -           -           -           -           -           -           -           -           -          1.0         1.0         1.0         1.0         1.0         1.0         1.0         1.0         1.0         1.0          1.0
+_2018be_MuonID        shape       1.0         1.0         1.0         1.0         1.0         1.0         1.0         1.0         1.0         1.0         1.0        -           -           -           -           -           -           -           -           -           -            -
+_trig2018be          lnN         1.01       -           -           -           -           -           -           -           -           -           1.01      -           -           -           -           -           -           -           -           -           -            -
+_eff           lnN         -           1.08        1.08        1.08        1.08        1.08        1.08        1.08        1.08        1.08        1.08       1.08        1.08        1.08        1.08        1.08        1.08        1.08        1.08        1.08        1.08         1.08
+R1_2018be             param      2.18633694802             0.025109549722241324 
+R2_2018be             param      2.23005790382             0.05160411124573314 
+R3_2018be             param      2.34000934432             0.027257306922882227 
+R4_2018be             param      2.28400260992             0.034390508913321356 
+R5_2018be             param      2.35218049872             0.056371463640077585 
+R6_2018be             param      2.32204167647             0.02769715969821855 
+R7_2018be             param      2.43411027031             0.051397528046529736 
+R8_2018be             param      2.5613574193             0.03889849728714407 
+R9_2018be             param      2.71722020646             0.055028660760279784 
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+R1_2018be             rateParam  signal                   mu_DY_S1     2.18633694802   [0,2] 
+R2_2018be             rateParam  signal                   mu_DY_S2     2.23005790382   [0,2]
+R3_2018be             rateParam  signal                   mu_DY_S3     2.34000934432   [0,2]
+R4_2018be             rateParam  signal                   mu_DY_S4     2.28400260992   [0,2]
+R5_2018be             rateParam  signal                   mu_DY_S5     2.35218049872   [0,2]
+R6_2018be             rateParam  signal                   mu_DY_S6     2.32204167647   [0,2]
+R7_2018be             rateParam  signal                   mu_DY_S7     2.43411027031   [0,2]
+R8_2018be             rateParam  signal                   mu_DY_S8     2.5613574193   [0,2]
+R9_2018be             rateParam  signal                   mu_DY_S9     2.71722020646   [0,2]
+Rmu1_2018be           rateParam  signal                   mu_DY_S1     (@0) Rel1_2018be       
+Rel1_2018be           rateParam  control                  el_DY_S1     18084.0098734      [0,999999]
+Rmu2_2018be           rateParam  signal                   mu_DY_S2     (@0) Rel2_2018be       
+Rel2_2018be           rateParam  control                  el_DY_S2     4768.4093067      [0,999999]
+Rmu3_2018be           rateParam  signal                   mu_DY_S3     (@0) Rel3_2018be       
+Rel3_2018be           rateParam  control                  el_DY_S3     1595.775608      [0,999999]
+Rmu4_2018be           rateParam  signal                   mu_DY_S4     (@0) Rel4_2018be 
+Rel4_2018be           rateParam  control                  el_DY_S4     959.741284182      [0,999999]
+Rmu5_2018be           rateParam  signal                   mu_DY_S5     (@0) Rel5_2018be 
+Rel5_2018be           rateParam  control                  el_DY_S5     262.540467313      [0,999999]
+Rmu6_2018be           rateParam  signal                   mu_DY_S6     (@0) Rel6_2018be 
+Rel6_2018be           rateParam  control                  el_DY_S6     102.798118804      [0,999999]
+Rmu7_2018be           rateParam  signal                   mu_DY_S7     (@0) Rel7_2018be 
+Rel7_2018be           rateParam  control                  el_DY_S7     20.1339848017      [0,999999]
+Rmu8_2018be           rateParam  signal                   mu_DY_S8     (@0) Rel8_2018be 
+Rel8_2018be           rateParam  control                  el_DY_S8     4.99635471028      [0,999999]
+Rmu9_2018be           rateParam  signal                   mu_DY_S9     (@0) Rel9_2018be 
+Rel9_2018be           rateParam  control                  el_DY_S9     1.75536025943      [0,999999]
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+signal              autoMCStats 0 0 1
+control             autoMCStats 0 0 1
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+massBin9 group = Rel1_2018be Rel2_2018be Rel3_2018be Rel4_2018be Rel5_2018be Rel6_2018be Rel7_2018be Rel8_2018be  
+massBin8 group = Rel1_2018be Rel2_2018be Rel3_2018be Rel4_2018be Rel5_2018be Rel6_2018be Rel7_2018be  
+
+
+
+
+
+
+
+
+
+
+

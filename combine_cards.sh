@@ -1,0 +1,3 @@
+combineCards.py 2016_new/datacard_templateBased_2016bb.txt 2016_new/datacard_templateBased_2016be.txt > 2016_new/combined_datacard2016.txt
+#combineCards.py /home/purohita/Hmm/June23_2020/CMSSW_10_2_13/src/Purdue_FinalPlots/June23_Plots/datacards_jun23/2017_jun16/datacard_vbf_SR.txt /home/purohita/Hmm/June23_2020/CMSSW_10_2_13/src/Purdue_FinalPlots/June23_Plots/datacards_jun23/2017_jun16/datacard_vbf_SB.txt > 2017/combined_datacard2017.txt
+#combineCards.py /home/purohita/Hmm/June23_2020/CMSSW_10_2_13/src/Purdue_FinalPlots/June23_Plots/datacards_jun23/2018_jun16/datacard_vbf_SR.txt /home/purohita/Hmm/June23_2020/CMSSW_10_2_13/src/Purdue_FinalPlots/June23_Plots/datacards_jun23/2018_jun16/datacard_vbf_SB.txt > 2018/combined_datacard2018.txt

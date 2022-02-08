@@ -61,7 +61,7 @@ def makeSimpleDatacard():
     for ireco in range(11):
         if ireco==0:
             datacard.write("1 ")
-        elif ireco==11:
+        elif ireco==10:
             datacard.write("2 ")
         else:
             datacard.write("%d "%(1-ireco))

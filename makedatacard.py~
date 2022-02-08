@@ -1,0 +1,5 @@
+
+
+obs_data_inputFile = rt.TFile("tmp2018bb_400cut.root","READ")
+data_obs_hist = obs_data_inputFile.Get("mu_data_obs")
+

@@ -1,5 +1,6 @@
 import ROOT as rt
 import copy
+from array import array
 def readhists(ws,inputFileName,histName):
     #histfile = rt.TFile("tmp2018bb_400cut.root","READ")
     histfile = rt.TFile(inputFileName,"READ")
@@ -40,7 +41,7 @@ def makePdf(ws, channelName, nbkg, nsig):
     #bkgmodel = rt.RooGenericPdf("bkgmodel","bkgmodel","@1*exp(@2+@3*(@0-400)+@4*(@0-400)*(@0-400)+@5*(@0-400)*(@0-400)*(@0-400)*(@0-400))*pow((@0-400),@6)",rt.RooArgList(mass,a,b,c,d,e,f))
 
     bkgmodel = rt.RooGenericPdf("ele_bkgmodel_"+channelName,"ele_bkgmodel_"+channelName,"@1*exp(@2+@3*@0+@4*@0*@0+@5*@0*@0*@0)*pow(@0,@6)",rt.RooArgList(ws.obj("mass"),bkg_a,bkg_b,bkg_c,bkg_d,bkg_e,bkg_f))
-    getattr(ws,'import')(bkgmodel)
+    #getattr(ws,'import')(bkgmodel)
 
 
     sig_a = rt.RooRealVar("ele_sig_"+channelName+"_a","ele_sig_"+channelName+"_a",nsig, nsig/2, nsig*2)
@@ -57,23 +58,30 @@ def makePdf(ws, channelName, nbkg, nsig):
     getattr(ws,'import')(sig_e,rt.RooCmdArg())
     getattr(ws,'import')(sig_f,rt.RooCmdArg())
     sigmodel = rt.RooGenericPdf("ele_sigmodel_"+channelName,"ele_sigmodel_"+channelName,"@1*exp(@2+@3*@0+@4*@0*@0+@5*@0*@0*@0)*pow(@0,@6)",rt.RooArgList(ws.obj("mass"),sig_a,sig_b,sig_c,sig_d,sig_e,sig_f))        
-    getattr(ws,'import')(sigmodel,rt.RooCmdArg())
+    #getattr(ws,'import')(sigmodel,rt.RooCmdArg())
 
     mean = rt.RooRealVar("ele_mean_" + channelName, "mean", .0, -2.0, 2.0)
     sigma = rt.RooRealVar("ele_sigma_" + channelName, "sigma", 2, 0.0, 5.0)
+    sigma_new = rt.RooFormulaVar("sigma_new", "abs(@0/(@1*@1))",rt.RooArgList(sigma, ws.obj("mass")))
+    means = array('d', [400+3100*a/10 for a in range(11)])
+    sigmas = array('d', [2.+a/10.0 for a in range(11)])
+    #sigma_new = rt.RooSpline1D("sigma_new", "sigma_new", ws.obj("mass"), 10, means, sigmas)
     alpha1 = rt.RooRealVar("ele_alpha1_" + channelName, "alpha1", 2, 0.001, 25)
     n1 = rt.RooRealVar("ele_n1_" + channelName, "n1", 1.5, 0, 25)
     alpha2 = rt.RooRealVar("ele_alpha2_" + channelName, "alpha2", 2.0, 0.001, 25)
     n2 = rt.RooRealVar("ele_n2_" + channelName, "n2", 1.5, 0, 25)
-    res_model = rt.RooDoubleCB("ele_dcb_" + channelName, "dcb", ws.obj("mass"), mean, sigma, alpha1, n1, alpha2, n2)
-    sigConvDCBmodel = rt.RooFFTConvPdf("ele_sigxdcb","Sig(X)dcb",ws.obj("mass"),sigmodel, res_model)
+    #res_model = rt.RooDoubleCB("ele_dcb_" + channelName, "dcb", ws.obj("mass"), mean, sigma, alpha1, n1, alpha2, n2)
+    res_model = rt.RooDoubleCB("ele_dcb_" + channelName, "dcb", ws.obj("mass"), mean, sigma_new, alpha1, n1, alpha2, n2)
+    #sigConvDCBmodel = rt.RooFFTConvPdf("ele_sigxdcb"+channelName,"Sig(X)dcb"+channelName,ws.obj("mass"),sigmodel, res_model)
+    sigConvDCBmodel = rt.RooFFTConvPdf("ele_sigxdcb"+channelName,"Sig(X)dcb"+channelName,ws.obj("mass"), bkgmodel, res_model)
     getattr(ws,'import')(mean,rt.RooCmdArg())
     getattr(ws,'import')(sigma,rt.RooCmdArg())
+    #getattr(ws,'import')(sigma_new,rt.RooCmdArg())
     getattr(ws,'import')(alpha1,rt.RooCmdArg())
     getattr(ws,'import')(n1,rt.RooCmdArg())
     getattr(ws,'import')(alpha2,rt.RooCmdArg())
     getattr(ws,'import')(n2,rt.RooCmdArg())
-    getattr(ws,'import')(res_model,rt.RooCmdArg())
+    #getattr(ws,'import')(res_model,rt.RooCmdArg())
     getattr(ws,'import')(sigConvDCBmodel,rt.RooCmdArg())
 
 
@@ -85,16 +93,18 @@ def fitresult(ws,channelName,pdfName, datasetName):
                           rt.RooFit.Verbose(rt.kFALSE))
     print(type(ws.data(datasetName)))
     #ws.pdf(pdfName).fitTo(ws.data(datasetName))
+    """
     ws.var("ele_bkg_"+channelName+"_a").setConstant(True)
     ws.var("ele_bkg_"+channelName+"_b").setConstant(True)
     ws.var("ele_bkg_"+channelName+"_c").setConstant(True)
     ws.var("ele_bkg_"+channelName+"_d").setConstant(True)
     ws.var("ele_bkg_"+channelName+"_e").setConstant(True)
     ws.var("ele_bkg_"+channelName+"_f").setConstant(True)
+    """
     xframe = ws.var("mass").frame(rt.RooFit.Title("Background Fit"))
     ws.data(datasetName).plotOn(xframe,rt.RooFit.Binning(100))
     ws.pdf(pdfName).plotOn(xframe)
-    #ws.pdf(pdfName).paramOn(xframe,rt.RooFit.Layout(0.62,0.90),rt.RooFit.Format("NEU",rt.RooFit.AutoPrecision(1)))
+    ws.pdf(pdfName).paramOn(xframe,rt.RooFit.Layout(0.62,0.90),rt.RooFit.Format("NEU",rt.RooFit.AutoPrecision(1)))
     xframe.Draw()
     nparam = ws.pdf(pdfName).getParameters(ws.data(datasetName)).getSize()
     #chi2 = xframe.chiSquare(ws.pdf(pdfName), ws.data(datasetName), nparam)
@@ -137,25 +147,28 @@ def add_signal(ws, templateFilePath):
         
 if __name__ == "__main__":
     chanName = "bb"
-    #inputFileName = "MC/Other_el_2016.root"
-    inputFileName = "../../../../../../../Combine-flavorRatio/MC/Other_el_2016.root"
+    inputFileName = "MC/Other_el_2016.root"
+    #inputFileName = "../../../../../../../Combine-flavorRatio/MC/Other_el_2016.root"
     inputHistName = "DielectronMass_"
     nbkg = 100000
     nsig = 1000000
     ws = createWS(chanName)
     readhists(ws, inputFileName, inputHistName+chanName)
     makePdf(ws, chanName, nbkg, nsig)
-    pdfName = "ele_bkgmodel_"+chanName
+    #pdfName = "ele_bkgmodel_"+chanName
+    pdfName = "ele_sigxdcb"+chanName
     datasetName = "ele_datahist"
     fitresult(ws,chanName, pdfName, datasetName)
     #../../../../../../../Combine-flavorRatio/templates/tmp2016bb_multiBins.root
-    obs_data_inputFile = rt.TFile("../../../../../../../Combine-flavorRatio/templates/tmp2016bb_multiBins.root","READ")
+    #obs_data_inputFile = rt.TFile("../../../../../../../Combine-flavorRatio/templates/tmp2016bb_multiBins.root","READ")
+    obs_data_inputFile = rt.TFile("templates/tmp2016bb_multiBins.root","READ")
     data_obs_hist = copy.deepcopy(obs_data_inputFile.Get("el_data_obs"))
     #data_obs_hist.SetDirectory(0)
     obs_data_inputFile.Close()
     add_obs_data(ws, data_obs_hist)
     #combined_results/templates/tmp2016be_multiBins.root
-    add_signal(ws,"../../../../../../../Combine-flavorRatio/combined_results/templates")
+    #add_signal(ws,"../../../../../../../Combine-flavorRatio/combined_results/templates")
+    add_signal(ws,"combined_results/templates")
     save_workspace(ws, "workspace_"+chanName+"_ele")
     
     a = input('Press a key to exit')

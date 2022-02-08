@@ -1,0 +1,9 @@
+
+
+imax 4 number of bins
+jmax 5 number of processes minus 1
+kmax * number of nuisance parameters
+----------------------------------------------------------------------------------------------------------------------------------
+shapes sig        bb      inputsig_8TeV_MVA.root ws:hggpdfrel_wh_cat0
+shapes bkg  bb      inputbkgdata_8TeV_MVA.root ws:pdf_data_pol_model_8TeV_cat0
+shapes data_obs  bb      inputbkgdata_8TeV_MVA.root ws:roohist_data_mass_cat0

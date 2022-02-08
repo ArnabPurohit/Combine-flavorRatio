@@ -8,7 +8,7 @@ from plotting.plotImpact import plotImpact
 from Parameters import sys_uncers
 from func.getFrAndLimits import getFrAndLimits 
 import os
-
+import sys
 
 #--floatOtherPOIs=1
 def main():
@@ -45,8 +45,9 @@ def main():
             tmps.createTmps(massCut, sys_uncers, massCutH=Bngs, isMultiBin=True)
             tmps.saveTmps(tmpName)
             writeDatacards(cardName, tmpName, year, cg, tmps.templates, acc_eff)
-            cmd='text2workspace.py -P HiggsAnalysis.CombinedLimit.FRatioPerBinModel:FRatioPerBinModel datacards/%s.txt --channel-masks -o datacards/%s.root'%(cardName, cardName)
+            cmd='text2workspace.py -P HiggsAnalysis.CombinedLimit.FRatioPerBinModel:FRatioPerBinModel datacards/%s.txt -o datacards/%s.root'%(cardName, cardName)
             os.system(cmd)
+            continue
             for i in range(9,10):
                 cmd="combine -M MultiDimFit --setParameters=r_bin1=1,r_bin2=1,r_bin3=1,r_bin4=1,r_bin5=1,r_bin6=1,r_bin7=1,r_bin8=1,r_bin9=1  -t -1 -m 125 --floatOtherPOIs=1  --algo=grid --points=1000 -P r_bin%s --setParameterRanges r_bin%s=0.01,10  --X-rtd MINIMIZER_analytic  datacards/%s.root"%(str(i),str(i),cardName)
                 os.system(cmd)
@@ -58,7 +59,7 @@ def main():
                 FRmed[key].append(str(frs[2]))
                 FRhigh[key].append(str(frs[3]))
                 FRlow[key].append(str(frs[1]))
-
+    sys.exit()
     FRmed["allYearCombine"]=[]
     FRmed["allYearCombine_bb"]=[]
     FRmed["allYearCombine_be"]=[]    
